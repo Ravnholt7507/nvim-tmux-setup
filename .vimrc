@@ -18,6 +18,7 @@ Plugin 'preservim/nerdtree'
 Plugin 'xuyuanp/nerdtree-git-plugin'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
+Plugin 'xavierd/clang_complete'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -73,6 +74,7 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
+let g:clang_library_path='/usr/lib/llvm-14/lib/libclang-14.so.1'
 let g:ale_disable_lsp = 1
 let g:ale_fixers = {
     \   'javascript': ['eslint'],
