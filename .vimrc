@@ -18,7 +18,6 @@ Plugin 'preservim/nerdtree'
 Plugin 'xuyuanp/nerdtree-git-plugin'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
-Plugin 'xavierd/clang_complete'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -34,7 +33,6 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-colorscheme atom
 syntax on
 set t_Co=256
 
@@ -74,7 +72,6 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
-let g:clang_library_path='/usr/lib/llvm-14/lib/libclang-14.so.1'
 let g:ale_disable_lsp = 1
 let g:ale_fixers = {
     \   'javascript': ['eslint'],
@@ -83,6 +80,7 @@ let g:ale_linters = {
     \   'javascript': ['eslint', 'tsserver'],
     \   'python': ['flake8'],
     \}
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 let g:ale_fix_on_save = 1
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
