@@ -11,4 +11,6 @@ This error happens because the use of __git_complete happens before the git auto
     - each part (i3, vim and bash) should be optional
     - pdf.sh doesnt install on all distros??
 
-req: sudo apt install ranger
+req: 
+sudo apt install ranger
+pip install tldr
