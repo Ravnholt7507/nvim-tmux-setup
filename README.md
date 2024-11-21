@@ -1,4 +1,4 @@
-This is my personal i3, bash and vim setup. 
+This is my personal bash and vim setup. 
 Feel free to use it aswell.
 
 #TODO:
@@ -6,3 +6,5 @@ Feel free to use it aswell.
     - Could perhaps be done with a simple bash script, or maybe even with ansible
     - each part (i3, vim and bash) should be optional
     - pdf.sh doesnt install on all distros??
+
+req: sudo apt install ranger
