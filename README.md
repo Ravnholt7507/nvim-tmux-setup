@@ -8,7 +8,7 @@ This error happens because the use of __git_complete happens before the git auto
 #TODO:
 - Make installation automatic
     - Could perhaps be done with a simple bash script, or maybe even with ansible
-    - each part (i3, vim and bash) should be optional
+    - each part (vim and bash) should be optional
     - pdf.sh doesnt install on all distros??
 
 req: 
