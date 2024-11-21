@@ -18,7 +18,8 @@ install lazygit -D -t /usr/local/bin/
 
 #Copy bash aliases
 cp .bash_aliases /home/$SUDO_USER/
-source /home/$SUDO_USER/.bashrc
+cp .bashrc /home/$SUDO_USER/
+. /home/$SUDO_USER/.bashrc
 echo 'Bash aliases updated succesfully'
 
 #Configure vim setup
