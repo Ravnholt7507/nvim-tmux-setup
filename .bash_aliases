@@ -1,5 +1,6 @@
 alias python=python3
 alias py=python3
+alias lg=lazygit
 alias g=git
 __git_complete g __git_main
 
