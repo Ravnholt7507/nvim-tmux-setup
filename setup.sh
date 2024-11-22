@@ -1,10 +1,16 @@
 #! /usr/bin/env bash
 
-#Intall ranger
+#Install tldr
+snap install tldr
+echo 'Tldr has been installed succesfully'
+
+#Install ranger
 apt install ranger
+echo 'Ranger has been installed succesfully'
 
 #Install Zoxide
 apt install zoxide
+echo 'Zoxide (z) has been installed succesfully'
 
 #Install Vim
 apt install vim
