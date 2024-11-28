@@ -1,10 +1,14 @@
 #! /usr/bin/env bash
 
-#Install tldr
+#Install Thefuck
+pip install https://github.com/DJStompZone/thefuck/archive/master.zip
+echo 'Thefuck has been installed succesfully'
+
+#Install Tldr
 snap install tldr
 echo 'Tldr has been installed succesfully'
 
-#Install ranger
+#Install Ranger
 apt install ranger
 echo 'Ranger has been installed succesfully'
 
@@ -16,7 +20,7 @@ echo 'Zoxide (z) has been installed succesfully'
 apt install vim
 echo 'Vim has been installed succesfully'
 
-#Install lazygit
+#Install Lazygit
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
 tar xf lazygit.tar.gz lazygit
