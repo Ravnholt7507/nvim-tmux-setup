@@ -1,28 +1,57 @@
 #! /usr/bin/env bash
 
+if [[ "$EUID" -ne 0 ]]; then
+    echo "Please run this script as root (using sudo)."
+    exit 1
+fi
+
 #Update apt repo
 apt update 
-echo 'Apt repo has been updated'
 
 #Install Thefuck
-pip install https://github.com/DJStompZone/thefuck/archive/master.zip
-echo 'Thefuck has been installed succesfully'
+sudo -u "$SUDO_USER" pip install https://github.com/DJStompZone/thefuck/archive/master.zip 
+if [[ $? -eq 0 ]]; then
+    echo 'Thefuck has been installed succesfully'
+else
+    echo "Failed to install the Thefuck."
+    exit 1
+fi
 
 #Install Tldr
 snap install tldr
-echo 'Tldr has been installed succesfully'
+if [[ $? -eq 0 ]]; then
+    echo 'Tldr has been installed succesfully'
+else
+    echo "Failed to install the Tldr."
+    exit 1
+fi
 
 #Install Ranger
 apt install ranger
-echo 'Ranger has been installed succesfully'
+if [[ $? -eq 0 ]]; then
+    echo 'Ranger has been installed succesfully'
+else
+    echo "Failed to install the Ranger."
+    exit 1
+fi
 
 #Install Zoxide
 apt install zoxide 
-echo 'Zoxide (z) has been installed succesfully'
+if [[ $? -eq 0 ]]; then
+    echo 'Zoxide (z) has been installed succesfully'
+else
+    echo "Failed to install the Zoxide."
+    exit 1
+fi
 
 #Install Vim
 apt install vim 
-echo 'Vim has been installed succesfully'
+if [[ $? -eq 0 ]]; then
+    echo 'Vim has been installed succesfully'
+else
+    echo "Failed to install the Vim."
+    exit 1
+fi
 
 #Install Lazygit
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*') 
@@ -31,13 +60,23 @@ tar xf lazygit.tar.gz lazygit
 install lazygit -D -t /usr/local/bin/ 
 rm lazygit.tar.gz 
 rm lazygit 
-echo 'Lazygit has been installed'
+if [[ $? -eq 0 ]]; then
+    echo 'Lazygit has been installed'
+else
+    echo "Failed to install the Lazygit."
+    exit 1
+fi
 
 #Copy bash aliases
 cp .bash_aliases /home/$SUDO_USER/ 
 cp .bashrc /home/$SUDO_USER/ 
 . /home/$SUDO_USER/.bashrc 
-echo 'Bash aliases updated succesfully'
+if [[ $? -eq 0 ]]; then
+    echo 'Bash aliases updated succesfully'
+else
+    echo "Failed to install the Bash."
+    exit 1
+fi
 
 #Configure vim setup
 cp .vimrc /home/$SUDO_USER/ 
@@ -49,4 +88,9 @@ sudo -u "$SUDO_USER" vim +PluginInstall +qall
 apt install build-essential cmake vim-nox python3-dev mono-complete golang nodejs openjdk-17-jdk openjdk-17-jre npm 
 cd /home/$SUDO_USER/.vim/bundle/YouCompleteMe 
 sudo -u "$SUDO_USER" python3 install.py --all 
-echo 'Vim has been configured successfully'
+if [[ $? -eq 0 ]]; then
+    echo 'Vim has been configured successfully'
+else
+    echo "Failed to configure Vim."
+    exit 1
+fi
