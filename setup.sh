@@ -8,15 +8,6 @@ fi
 #Update apt repo
 apt update 
 
-#Install Thefuck
-sudo -u "$SUDO_USER" pip install https://github.com/DJStompZone/thefuck/archive/master.zip 
-if [[ $? -eq 0 ]]; then
-    echo 'Thefuck has been installed succesfully'
-else
-    echo "Failed to install the Thefuck."
-    exit 1
-fi
-
 #Install Tldr
 snap install tldr
 if [[ $? -eq 0 ]]; then
