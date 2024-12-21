@@ -1,0 +1,6 @@
+sudo apt install i3
+sudo apt install pulseaudio-utils
+sudo apt install maim
+sudo apt install xclip
+sudo apt install xdotool
+sudo pip3 install --upgrade dmenu_extended
