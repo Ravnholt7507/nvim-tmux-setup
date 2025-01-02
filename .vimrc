@@ -75,6 +75,7 @@ set expandtab
 let g:ale_disable_lsp = 1
 let g:ale_fixers = {
     \   'javascript': ['eslint'],
+    \   'cpp': ['clang-format'],
     \}
 let g:ale_linters = {
     \   'javascript': ['eslint', 'tsserver'],
@@ -90,6 +91,12 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ale_python_pylint_options='--disable=C0103'
 let g:ale_python_pylint_options='--disable=C0301'
+let cpp_opts = '-std=c++23 -Wall -Wextra'
+let g:ale_linters = { 'cpp': ['g++', 'cc', 'gcc', 'clang'] }
+let g:ale_cpp_cc_options    = cpp_opts
+let g:ale_cpp_gcc_options   = cpp_opts
+let g:ale_cpp_clang_options = cpp_opts
+
 
 let g:NERDTreeWinPos = "right"
 let g:NERDTreeGitStatusIndicatorMapCustom = {
@@ -104,6 +111,7 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
                 \ 'Clean'     :'✔︎',
                 \ 'Unknown'   :'?',
                 \ }
+let NERDTreeQuitOnOpen=1
 
 set number relativenumber
 set clipboard=unnamed
