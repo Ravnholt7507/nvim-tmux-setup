@@ -1,6 +1,8 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 export PATH=$PATH:/home/andreas/CPLEX_Studio_Community2211/cplex/bin/x86-64_linux:/home/andreas/CPLEX_Studio_Community2211/concert/bin/x86-64_linux
 export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/home/andreas/CPLEX_Studio_Community2211/cplex/include/:/home/andreas/CPLEX_Studio_Community2211/concert/include/
+export LD_LIBRARY_PATH=/home/andreas/CPLEX_Studio_Community2211/concert/lib/x86-64_linux/static_pic:/home/andreas/CPLEX_Studio_Community2211/cplex/lib/x86-64_linux/static_pic:$LD_LIBRARY_PATH
+export CPLEX_STUDIO_DIR2211=/home/andreas/CPLEX_Studio_Community2211
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
