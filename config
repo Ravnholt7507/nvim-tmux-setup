@@ -202,5 +202,5 @@ bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewi
 bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
 
 # Keyboard layouts
-exec_always "setxkbmap -layout us,dk"
-exec_always "setxkbmap -option 'grp:alt_shift_toggle'"
+exec --no-startup-id setxkbmap -layout us,dk
+exec --no-startup-id setxkbmap -option grp:alt_shift_toggle
