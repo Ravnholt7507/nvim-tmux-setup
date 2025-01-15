@@ -97,6 +97,9 @@ let g:ale_cpp_cc_options    = cpp_opts
 let g:ale_cpp_gcc_options   = cpp_opts
 let g:ale_cpp_clang_options = cpp_opts
 
+"Make fzf search hidden files aswell
+let $FZF_DEFAULT_COMMAND = 'rg --hidden -l ""'
+
 
 let g:NERDTreeWinPos = "right"
 let g:NERDTreeGitStatusIndicatorMapCustom = {
