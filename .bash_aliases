@@ -4,6 +4,8 @@ alias lg=lazygit
 alias g=git
 __git_complete g __git_main
 
+alias vim=nvim
+
 alias gs="git status"
 alias gc="git commit -m"
 alias gp="git push"

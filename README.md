@@ -11,7 +11,12 @@ This error happens because the use of __git_complete happens before the git auto
     - each part (vim and bash) should be optional
     - pdf.sh doesnt install on all distros??
 
+<<<<<<< Updated upstream
 optional tools: 
+=======
+req: 
+npm install -g typescript-language-server typescript
+>>>>>>> Stashed changes
 sudo apt install ranger
 pip install tldr
 
