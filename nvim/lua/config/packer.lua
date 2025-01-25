@@ -33,8 +33,8 @@ return require('packer').startup(function(use)
     use({'williamboman/mason.nvim'})
     use({'williamboman/mason-lspconfig.nvim'})
     use({'neovim/nvim-lspconfig'})
-    use({'hrsh7th/nvim-cmp'})
     use({'hrsh7th/cmp-nvim-lsp'})
+    use({'hrsh7th/cmp-nvim-lsp-signature-help'})
 
     -- Status lines
     use {
@@ -42,4 +42,36 @@ return require('packer').startup(function(use)
         requires = { 'nvim-tree/nvim-web-devicons', opt = true }
     }
 
+    -- Typescript auto tags (automatic close of divs)
+    use({'windwp/nvim-ts-autotag'})
+
+    -- Automatic close of brackets.
+    use {
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+        config = function()
+            require("nvim-autopairs").setup {}
+        end
+    }
+    use({
+        "L3MON4D3/LuaSnip",
+    })
+    use {
+        'hrsh7th/nvim-cmp',
+        config = function ()
+            require'cmp'.setup {
+                snippet = {
+                    expand = function(args)
+                        require'luasnip'.lsp_expand(args.body)
+                    end
+                },
+
+                sources = {
+                    { name = 'luasnip' },
+                    -- more sources
+                },
+            }
+        end
+    }
+    use { 'saadparwaiz1/cmp_luasnip' }
 end)

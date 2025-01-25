@@ -32,41 +32,64 @@ require('mason-lspconfig').setup({
 })
 
 local cmp = require('cmp')
+require('luasnip.loaders.from_vscode').lazy_load()
 
 cmp.setup({
     sources = {
         {name = 'nvim_lsp'},
+        {name = 'nvim_lsp_signature_help'},
         { name = "luasnip" },
         { name = "buffer" },
         { name = "path" },
     },
   snippet = {
-    expand = function(args)
-      -- You need Neovim v0.10 to use vim.snippet
-      vim.snippet.expand(args.body)
-    end,
+      expand = function(args)
+          require('luasnip').lsp_expand(args.body)
+      end,
   },
-  mapping = cmp.mapping.preset.insert({}),
+  mapping = cmp.mapping.preset.insert({
+      ['<CR>'] = cmp.mapping.confirm({select = false}),
+      ['<Tab>'] = cmp.mapping(function(fallback)
+          local col = vim.fn.col('.') - 1
+
+          if cmp.visible() then
+              cmp.select_next_item({behavior = 'select'})
+          elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+              fallback()
+          else
+              cmp.complete()
+          end
+      end, {'i', 's'}),
+
+      -- Go to previous item
+      ['<S-Tab>'] = cmp.mapping.select_prev_item({behavior = 'select'}),
+      -- Jump to the next snippet placeholder
+      ['<C-f>'] = cmp.mapping(function(fallback)
+          local luasnip = require('luasnip')
+          if luasnip.locally_jumpable(1) then
+              luasnip.jump(1)
+          else
+              fallback()
+          end
+      end, {'i', 's'}),
+      -- Jump to the previous snippet placeholder
+      ['<C-b>'] = cmp.mapping(function(fallback)
+          local luasnip = require('luasnip')
+          if luasnip.locally_jumpable(-1) then
+              luasnip.jump(-1)
+          else
+              fallback()
+          end
+      end, {'i', 's'}),
+  }),
 })
 --Actual languange
 require("mason-lspconfig").setup {
-    ensure_installed = { "lua_ls", "rust_analyzer", "clangd", "cmake", "tailwindcss", "ast_grep", "rome", "ltex", "pylsp"},
+    ensure_installed = { "lua_ls", "rust_analyzer", "clangd", "cmake", "tailwindcss", "ast_grep", "rome", "pylsp"},
 }
 local status, nvim_lsp = pcall(require, "lspconfig")
 if (not status) then return end
 
-local protocol = require('vim.lsp.protocol')
-
-local on_attach = function(client, bufnr)
-  -- format on save
-  if client.server_capabilities.documentFormattingProvider then
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      group = vim.api.nvim_create_augroup("Format", { clear = true }),
-      buffer = bufnr,
-      callback = function() vim.lsp.buf.formatting_seq_sync() end
-    })
-  end
-end
 
 -- TypeScript
 nvim_lsp.ts_ls.setup {
