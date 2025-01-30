@@ -1,4 +1,4 @@
-This is my personal bash and vim setup. 
+This is my personal bash and neovim setup. 
 Feel free to use it aswell.
 
 #Git autocompleteion:
@@ -6,17 +6,12 @@ In .bashrc on line 109, there is a source of the __git_complete. This has to be 
 This error happens because the use of __git_complete happens before the git autocomplete file has been sourced.
 
 #TODO:
-- Make installation automatic
-    - Could perhaps be done with a simple bash script, or maybe even with ansible
+- Make neovim installation automatic
     - each part (vim and bash) should be optional
     - pdf.sh doesnt install on all distros??
 
-<<<<<<< Updated upstream
 optional tools: 
-=======
-req: 
 npm install -g typescript-language-server typescript
->>>>>>> Stashed changes
 sudo apt install ranger
 pip install tldr
 
