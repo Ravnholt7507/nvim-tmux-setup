@@ -10,10 +10,10 @@ This error happens because the use of __git_complete happens before the git auto
     - each part (vim and bash) should be optional
     - pdf.sh doesnt install on all distros??
 
-optional tools: 
-npm install -g typescript-language-server typescript
-sudo apt install ranger
-pip install tldr
+optional tools: <br>
+npm install -g typescript-language-server typescript <br>
+sudo apt install ranger <br>
+pip install tldr <br>
 
 lazygit:
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
