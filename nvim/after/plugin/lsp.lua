@@ -85,7 +85,7 @@ cmp.setup({
 })
 --Actual languange
 require("mason-lspconfig").setup {
-    ensure_installed = { "lua_ls", "rust_analyzer", "clangd", "cmake", "tailwindcss", "ast_grep", "rome", "pylsp"},
+    ensure_installed = { "lua_ls", "rust_analyzer", "clangd", "cmake", "tailwindcss", "ast_grep", "rome"},
 }
 local status, nvim_lsp = pcall(require, "lspconfig")
 if (not status) then return end
