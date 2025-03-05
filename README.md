@@ -8,7 +8,6 @@ This error happens because the use of __git_complete happens before the git auto
 #TODO:
 - Make neovim installation automatic
     - each part (vim and bash) should be optional
-    - pdf.sh doesnt install on all distros??
 
 optional tools: <br>
 npm install -g typescript-language-server typescript <br>
