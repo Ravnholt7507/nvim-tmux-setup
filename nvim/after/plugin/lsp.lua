@@ -98,3 +98,17 @@ nvim_lsp.ts_ls.setup {
     cmd = { "typescript-language-server", "--stdio" }
 }
 
+nvim_lsp.pylsp.setup{
+   settings = {
+       pylsp = {
+           plugins = {
+                 pycodestyle = {
+			 maxLineLength = 200,
+                 },
+                 flake8 = {
+			 maxLineLength = 200,
+                 }
+            }
+        }
+    }
+}
