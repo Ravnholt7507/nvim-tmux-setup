@@ -11,7 +11,7 @@ return require('packer').startup(function(use)
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.8',
         -- or                            , branch = '0.1.x',
-        requires = { {'nvim-lua/plenary.nvim'} }
+        requires = { { 'nvim-lua/plenary.nvim' } }
     }
 
     -- Colorscheme
@@ -19,22 +19,22 @@ return require('packer').startup(function(use)
         'rose-pine/neovim',
         as = 'rose-pine',
         config = function()
-        vim.cmd('colorscheme rose-pine')
+            vim.cmd('colorscheme rose-pine')
         end
     })
 
     -- Highlighting
-    use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+    use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
 
     -- Undo Tree <leader>u
     use 'mbbill/undotree'
 
     --LSP
-    use({'williamboman/mason.nvim'})
-    use({'williamboman/mason-lspconfig.nvim'})
-    use({'neovim/nvim-lspconfig'})
-    use({'hrsh7th/cmp-nvim-lsp'})
-    use({'hrsh7th/cmp-nvim-lsp-signature-help'})
+    use({ 'williamboman/mason.nvim' })
+    use({ 'williamboman/mason-lspconfig.nvim' })
+    use({ 'neovim/nvim-lspconfig' })
+    use({ 'hrsh7th/cmp-nvim-lsp' })
+    use({ 'hrsh7th/cmp-nvim-lsp-signature-help' })
 
     -- Status lines
     use {
@@ -43,7 +43,7 @@ return require('packer').startup(function(use)
     }
 
     -- Typescript auto tags (automatic close of divs)
-    use({'windwp/nvim-ts-autotag'})
+    use({ 'windwp/nvim-ts-autotag' })
 
     -- Automatic close of brackets.
     use {
@@ -58,11 +58,11 @@ return require('packer').startup(function(use)
     })
     use {
         'hrsh7th/nvim-cmp',
-        config = function ()
-            require'cmp'.setup {
+        config = function()
+            require 'cmp'.setup {
                 snippet = {
                     expand = function(args)
-                        require'luasnip'.lsp_expand(args.body)
+                        require 'luasnip'.lsp_expand(args.body)
                     end
                 },
 
@@ -74,4 +74,10 @@ return require('packer').startup(function(use)
         end
     }
     use { 'saadparwaiz1/cmp_luasnip' }
+    use "nvim-lua/plenary.nvim"
+     use {
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+        requires = { { "nvim-lua/plenary.nvim" } }
+    }
 end)
