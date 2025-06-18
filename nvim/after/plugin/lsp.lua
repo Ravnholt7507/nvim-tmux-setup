@@ -22,14 +22,6 @@ lspconfig_defaults.capabilities = vim.tbl_deep_extend(
   require('cmp_nvim_lsp').default_capabilities()
 )
 
-require('mason').setup()
-require('mason-lspconfig').setup({
-  handlers = {
-    function(server_name)
-      require('lspconfig')[server_name].setup({})
-    end,
-  }
-})
 
 local cmp = require('cmp')
 require('luasnip.loaders.from_vscode').lazy_load()
@@ -83,10 +75,10 @@ cmp.setup({
       end, {'i', 's'}),
   }),
 })
+
+
+require('mason').setup()
 --Actual languange
-require("mason-lspconfig").setup {
-    ensure_installed = { "lua_ls", "rust_analyzer", "clangd", "cmake", "tailwindcss", "ast_grep", "rome"},
-}
 local status, nvim_lsp = pcall(require, "lspconfig")
 if (not status) then return end
 
@@ -102,12 +94,17 @@ nvim_lsp.pylsp.setup{
    settings = {
        pylsp = {
            plugins = {
-                 pycodestyle = {
-			 maxLineLength = 200,
-                 },
-                 flake8 = {
-			 maxLineLength = 200,
-                 }
+               pycodestyle = {
+                   enabled = true,
+                   maxLineLength = 200,
+               },
+               flake8 = {
+                   enabled = true,
+                   maxLineLength = 200,
+               },
+        mccabe = { enabled = false },
+        pyflakes = { enabled = false },
+        pylint = { enabled = false },
             }
         }
     }

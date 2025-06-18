@@ -7,6 +7,8 @@ return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
+    use 'ThePrimeagen/vim-be-good'
+
     -- Fuzzy finder
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.8',
@@ -36,6 +38,7 @@ return require('packer').startup(function(use)
     use({ 'hrsh7th/cmp-nvim-lsp' })
     use({ 'hrsh7th/cmp-nvim-lsp-signature-help' })
 
+    use { 'nvim-tree/nvim-web-devicons', opt = true }
     -- Status lines
     use {
         'nvim-lualine/lualine.nvim',
