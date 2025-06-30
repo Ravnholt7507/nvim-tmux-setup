@@ -17,15 +17,6 @@ else
     exit 1
 fi
 
-#Install Ranger
-apt install ranger
-if [[ $? -eq 0 ]]; then
-    echo 'Ranger has been installed succesfully'
-else
-    echo "Failed to install the Ranger."
-    exit 1
-fi
-
 #Install Zoxide
 apt install zoxide 
 if [[ $? -eq 0 ]]; then
@@ -35,14 +26,6 @@ else
     exit 1
 fi
 
-#Install Vim
-apt install vim 
-if [[ $? -eq 0 ]]; then
-    echo 'Vim has been installed succesfully'
-else
-    echo "Failed to install the Vim."
-    exit 1
-fi
 
 #Install Lazygit
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*') 
@@ -69,19 +52,3 @@ else
     exit 1
 fi
 
-#Configure vim setup
-cp .vimrc /home/$SUDO_USER/ 
-if [ ! -d "/home/$SUDO_USER/.vim/bundle" ]; then
-    mkdir /home/$SUDO_USER/.vim/bundle 
-fi
-cp ycm_extra_conf.py /home/$SUDO_USER/.vim/ 
-sudo -u "$SUDO_USER" vim +PluginInstall +qall 
-apt install build-essential cmake vim-nox python3-dev mono-complete golang nodejs openjdk-17-jdk openjdk-17-jre npm 
-cd /home/$SUDO_USER/.vim/bundle/YouCompleteMe 
-sudo -u "$SUDO_USER" python3 install.py --all 
-if [[ $? -eq 0 ]]; then
-    echo 'Vim has been configured successfully'
-else
-    echo "Failed to configure Vim."
-    exit 1
-fi
