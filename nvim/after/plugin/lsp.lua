@@ -113,6 +113,7 @@ nvim_lsp.pylsp.setup{
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 require('lspconfig').volar.setup({
+  cmd = { "/home/ara265/.nvm/versions/node/v20.19.3/bin/vue-language-server", "--stdio" },
   filetypes = {
     'typescript',
     'javascript',
