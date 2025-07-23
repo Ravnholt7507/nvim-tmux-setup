@@ -11,6 +11,5 @@ This error happens because the use of __git_complete happens before the git auto
 
 optional tools: <br>
 npm install -g typescript-language-server typescript <br>
-sudo apt install ranger <br>
 pip install tldr <br>
 

@@ -17,8 +17,5 @@ alias gaa="git add -A"
 alias lsa="ls -lha"
 alias venv="source venv/bin/activate"
 alias ..="cd .."
-alias lock="i3lock"
 alias close="systemctl poweroff"
-alias lang="setxkbmap -layout us,dk -option grp:alt_shift_toggle"
-alias paint="kolourpaint"
 
