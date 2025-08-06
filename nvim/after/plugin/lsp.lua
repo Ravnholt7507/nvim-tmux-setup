@@ -119,10 +119,6 @@ require('lspconfig').volar.setup({
     capabilities = capabilities,
     cmd = { "/home/ara265/.nvm/versions/node/v20.19.3/bin/vue-language-server", "--stdio" },
     filetypes = {
-        'typescript',
-        'javascript',
-        'javascriptreact',
-        'typescriptreact',
         'vue'
     },
 })
