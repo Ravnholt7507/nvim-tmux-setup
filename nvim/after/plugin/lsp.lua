@@ -1,19 +1,19 @@
-vim.api.nvim_create_autocmd('LspAttach', {
-  callback = function(event)
-    local opts = {buffer = event.buf}
+local on_attach = function(_, bufnr)
+  local opts = {buffer = bufnr}
 
-    vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-    vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-    vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
-    vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
-    vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
-    vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
-    vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-    vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-    vim.keymap.set({'n', 'x'}, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
-    vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
-  end,
-})
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+  vim.keymap.set('n', 'go', vim.lsp.buf.type_definition, opts)
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+  vim.keymap.set('n', 'gs', vim.lsp.buf.signature_help, opts)
+  vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts)
+  vim.keymap.set({'n', 'x'}, '<F3>', function() vim.lsp.buf.format { async = true } end, opts)
+  vim.keymap.set('n', '<F4>', vim.lsp.buf.code_action, opts)
+end
+
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local lspconfig_defaults = require('lspconfig').util.default_config
 lspconfig_defaults.capabilities = vim.tbl_deep_extend(
@@ -86,12 +86,15 @@ if (not status) then return end
 -- TypeScript
 nvim_lsp.ts_ls.setup {
     on_attach = on_attach,
+    capabilities = capabilities,
     filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascriptreact"},
     cmd = { "typescript-language-server", "--stdio" }
 }
 
 nvim_lsp.pylsp.setup{
-   settings = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
        pylsp = {
            plugins = {
                pycodestyle = {
@@ -110,17 +113,32 @@ nvim_lsp.pylsp.setup{
     }
 }
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 require('lspconfig').volar.setup({
-  cmd = { "/home/ara265/.nvm/versions/node/v20.19.3/bin/vue-language-server", "--stdio" },
-  filetypes = {
-    'typescript',
-    'javascript',
-    'javascriptreact',
-    'typescriptreact',
-    'vue'
-  },
-  capabilities = capabilities,
+    on_attach = on_attach,
+    capabilities = capabilities,
+    cmd = { "/home/ara265/.nvm/versions/node/v20.19.3/bin/vue-language-server", "--stdio" },
+    filetypes = {
+        'typescript',
+        'javascript',
+        'javascriptreact',
+        'typescriptreact',
+        'vue'
+      },
 })
 
+nvim_lsp.lua_ls.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+        Lua = {
+            runtime = { version = 'LuaJIT' },
+            diagnostics = { globals = { 'vim' } },
+            workspace = {
+                library = vim.api.nvim_get_runtime_file("", true),
+                checkThirdParty = false,
+            },
+            telemetry = { enable = false },
+        }
+    }
+}
