@@ -83,12 +83,17 @@ local status, nvim_lsp = pcall(require, "lspconfig")
 if (not status) then return end
 
 
--- TypeScript
 nvim_lsp.ts_ls.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascriptreact"},
-    cmd = { "typescript-language-server", "--stdio" }
+init_options = {
+	plugins = {
+		{
+			name = '@vue/typescript-plugin',
+			location = os.getenv("HOME") .. "/.nvm/versions/node/v20.19.3/lib/node_modules/@vue/language-server",
+			languages = { 'vue' },
+		},
+	},
+},
+filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue'  },
 }
 
 nvim_lsp.pylsp.setup{
@@ -114,14 +119,7 @@ nvim_lsp.pylsp.setup{
 }
 
 
-require('lspconfig').volar.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-    cmd = { "/home/ara265/.nvm/versions/node/v20.19.3/bin/vue-language-server", "--stdio" },
-    filetypes = {
-        'vue'
-    },
-})
+
 
 nvim_lsp.lua_ls.setup {
     on_attach = on_attach,
@@ -161,4 +159,15 @@ nvim_lsp.ansiblels.setup {
         }
     }
 }
+--[[
+--
+local servers = { "html", "cssls", "eslint" }
+
+for _, lsp in ipairs(servers) do
+  require("lspconfig")[lsp].setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  }
+end
+--]]
 
