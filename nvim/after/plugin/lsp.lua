@@ -83,18 +83,20 @@ local status, nvim_lsp = pcall(require, "lspconfig")
 if (not status) then return end
 
 
-nvim_lsp.ts_ls.setup {
-init_options = {
-	plugins = {
-		{
-			name = '@vue/typescript-plugin',
-			location = os.getenv("HOME") .. "/.nvm/versions/node/v20.19.3/lib/node_modules/@vue/language-server",
-			languages = { 'vue' },
-		},
-	},
-},
-filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue'  },
-}
+local lspconfig = require("lspconfig")
+
+lspconfig.volar.setup({
+    filetypes = {
+        "typescript", "javascript",
+        "javascriptreact", "typescriptreact",
+        "vue"
+    },
+    init_options = {
+        typescript = {
+            tsdk = vim.fn.expand("~/.nvm/versions/node/v20.19.3/lib/node_modules/typescript/lib"),
+        },
+    },
+})
 
 nvim_lsp.pylsp.setup{
     on_attach = on_attach,
