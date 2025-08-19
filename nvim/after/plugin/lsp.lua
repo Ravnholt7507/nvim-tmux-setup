@@ -87,8 +87,6 @@ local lspconfig = require("lspconfig")
 
 lspconfig.volar.setup({
     filetypes = {
-        "typescript", "javascript",
-        "javascriptreact", "typescriptreact",
         "vue"
     },
     init_options = {
@@ -96,6 +94,10 @@ lspconfig.volar.setup({
             tsdk = vim.fn.expand("~/.nvm/versions/node/v20.19.3/lib/node_modules/typescript/lib"),
         },
     },
+})
+
+lspconfig.ts_ls.setup({
+    filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" }
 })
 
 nvim_lsp.pylsp.setup{
