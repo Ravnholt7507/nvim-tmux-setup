@@ -38,10 +38,19 @@ return require('packer').startup(function(use)
     use({ 'hrsh7th/cmp-nvim-lsp' })
     use({ 'hrsh7th/cmp-nvim-lsp-signature-help' })
 
-    use { 'nvim-tree/nvim-web-devicons', opt = true }
+    use {
+        'nvim-tree/nvim-web-devicons',
+        config = function()
+            require('nvim-web-devicons').setup { default = true }
+        end
+    }
     -- Status lines
     use {
         'nvim-lualine/lualine.nvim',
+        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+    }
+    use {
+        'nvim-tree/nvim-tree.lua',
         requires = { 'nvim-tree/nvim-web-devicons', opt = true }
     }
 

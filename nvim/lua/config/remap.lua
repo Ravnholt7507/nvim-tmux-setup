@@ -10,7 +10,7 @@ vim.keymap.set("v", "<leader>y", "\"+y")
 vim.keymap.set("n", "<leader>y", "\"+y")
 
 vim.keymap.set("n", "<leader>w", vim.cmd.w)
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>pv", ':NvimTreeOpen<CR>')
 
 vim.keymap.set("n", "<leader>]", function() vim.diagnostic.jump({ count = 1, float = true }) end)
 

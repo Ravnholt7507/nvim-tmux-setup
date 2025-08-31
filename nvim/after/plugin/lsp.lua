@@ -1,6 +1,5 @@
 local on_attach = function(_, bufnr)
     local opts = {buffer = bufnr}
-
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
@@ -14,14 +13,6 @@ local on_attach = function(_, bufnr)
 end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-local lspconfig_defaults = require('lspconfig').util.default_config
-lspconfig_defaults.capabilities = vim.tbl_deep_extend(
-    'force',
-    lspconfig_defaults.capabilities,
-    require('cmp_nvim_lsp').default_capabilities()
-)
-
 
 local cmp = require('cmp')
 require('luasnip.loaders.from_vscode').lazy_load()
@@ -76,13 +67,7 @@ cmp.setup({
     }),
 })
 
-
 require('mason').setup()
---Actual languange
-local status, nvim_lsp = pcall(require, "lspconfig")
-if (not status) then return end
-
-
 local lspconfig = require("lspconfig")
 
 lspconfig.volar.setup({
@@ -100,7 +85,7 @@ lspconfig.ts_ls.setup({
     filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" }
 })
 
-nvim_lsp.pylsp.setup{
+lspconfig.pylsp.setup{
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
@@ -122,10 +107,7 @@ nvim_lsp.pylsp.setup{
     }
 }
 
-
-
-
-nvim_lsp.lua_ls.setup {
+lspconfig.lua_ls.setup {
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
@@ -141,7 +123,7 @@ nvim_lsp.lua_ls.setup {
     }
 }
 
-nvim_lsp.ansiblels.setup {
+lspconfig.ansiblels.setup {
     on_attach = on_attach,
     capabilities = capabilities,
     filetypes = { "yaml.ansible" }, -- important for triggering only on Ansible YAML files
@@ -163,15 +145,8 @@ nvim_lsp.ansiblels.setup {
         }
     }
 }
---[[
---
-local servers = { "html", "cssls", "eslint" }
 
-for _, lsp in ipairs(servers) do
-  require("lspconfig")[lsp].setup {
+lspconfig.clangd.setup {
     on_attach = on_attach,
-    capabilities = capabilities,
-  }
-end
---]]
-
+    capabilities = capabilities
+}
