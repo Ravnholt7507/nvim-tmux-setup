@@ -16,8 +16,12 @@ vim.keymap.set("n", "<leader>]", function() vim.diagnostic.jump({ count = 1, flo
 
 vim.keymap.set("n", "<leader>[", function() vim.diagnostic.jump({ count = -1, float = true }) end)
 
+-- Tab stuff
 vim.api.nvim_set_keymap('n', '<Tab>', ':tabnext<CR>', { noremap = true, silent = true })      -- Switch to next tab
 vim.api.nvim_set_keymap('n', '<S-Tab>', ':tabprevious<CR>', { noremap = true, silent = true }) -- Switch to previous tab
+vim.api.nvim_set_keymap('n', '<C-t>', ':tabnew<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-x>', ':tabc<CR>', { noremap = true, silent = true })
+
 vim.api.nvim_set_keymap('n', '<F1>', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
 
 -- Terminal stuff
