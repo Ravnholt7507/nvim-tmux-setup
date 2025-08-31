@@ -19,3 +19,13 @@ vim.keymap.set("n", "<leader>[", function() vim.diagnostic.jump({ count = -1, fl
 vim.api.nvim_set_keymap('n', '<Tab>', ':tabnext<CR>', { noremap = true, silent = true })      -- Switch to next tab
 vim.api.nvim_set_keymap('n', '<S-Tab>', ':tabprevious<CR>', { noremap = true, silent = true }) -- Switch to previous tab
 vim.api.nvim_set_keymap('n', '<F1>', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
+
+-- Terminal stuff
+vim.keymap.set('n', '<leader>st', function ()
+    vim.cmd.vnew()
+    vim.cmd.term()
+    vim.cmd.wincmd('J')
+    vim.api.nvim_win_set_height(0, 15)
+end)
+
+vim.keymap.set('t', '<leader><Esc>', '<C-\\><C-n>')
