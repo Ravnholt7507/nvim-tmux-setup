@@ -68,9 +68,8 @@ cmp.setup({
 })
 
 require('mason').setup()
-local lspconfig = require("lspconfig")
 
-lspconfig.volar.setup({
+vim.lsp.config('vue_ls', {
     filetypes = {
         "vue"
     },
@@ -81,11 +80,11 @@ lspconfig.volar.setup({
     },
 })
 
-lspconfig.ts_ls.setup({
+vim.lsp.config('ts_ls',{
     filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" }
 })
 
-lspconfig.pylsp.setup{
+vim.lsp.config('pylsp', {
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
@@ -105,9 +104,9 @@ lspconfig.pylsp.setup{
             }
         }
     }
-}
+})
 
-lspconfig.lua_ls.setup {
+vim.lsp.config('lua_ls', {
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
@@ -121,9 +120,9 @@ lspconfig.lua_ls.setup {
             telemetry = { enable = false },
         }
     }
-}
+})
 
-lspconfig.ansiblels.setup {
+vim.lsp.config('ansiblels', {
     on_attach = on_attach,
     capabilities = capabilities,
     filetypes = { "yaml.ansible" }, -- important for triggering only on Ansible YAML files
@@ -144,9 +143,11 @@ lspconfig.ansiblels.setup {
             }
         }
     }
-}
+})
 
-lspconfig.clangd.setup {
+vim.lsp.config('clangd', {
     on_attach = on_attach,
     capabilities = capabilities
-}
+})
+
+vim.lsp.enable({'vue_ls', 'ts_ls', 'pylsp', 'lua_ls', 'ansiblels', 'clangd'})
