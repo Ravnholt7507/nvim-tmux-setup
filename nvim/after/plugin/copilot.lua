@@ -33,4 +33,7 @@ require('copilot').setup({
 	},
 	copilot_node_command ='node',
 	server_opts_overrides = {},
+	workspace_folders = {
+		"~/Source/BATManager"
+	}
 })
