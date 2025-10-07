@@ -93,19 +93,4 @@ return require('packer').startup(function(use)
     }
 
     use { 'norcalli/nvim-colorizer.lua' }
-    use {
-        'akinsho/bufferline.nvim',
-        requires = 'nvim-tree/nvim-web-devicons',
-        config = function()
-            require("bufferline").setup {
-                options = {
-                    show_buffer_icons = true,  -- enable devicons
-                    show_buffer_close_icons = true,
-                    show_tab_indicators = true,
-                    separator_style = "slant", -- "slant" | "thick" | "thin"
-                    diagnostics = "nvim_lsp", -- show LSP errors/warnings in tabs
-                }
-            }
-        end
-    }
 end)
