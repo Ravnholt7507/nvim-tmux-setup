@@ -150,4 +150,16 @@ vim.lsp.config('clangd', {
     capabilities = capabilities
 })
 
-vim.lsp.enable({'vue_ls', 'ts_ls', 'pylsp', 'lua_ls', 'ansiblels', 'clangd'})
+vim.lsp.config('bashls', {
+	on_attach = on_attach,
+	capabilities = capabilities,
+	filetypes = {'sh', 'bash'}
+})
+
+vim.lsp.config('yamlls', {
+	on_attach = on_attach,
+	capabilities = capabilities,
+	filetypes = {'yaml', 'yml'}
+})
+
+vim.lsp.enable({'vue_ls', 'ts_ls', 'pylsp', 'lua_ls', 'ansiblels', 'clangd', 'bashls', 'yamlls'})
