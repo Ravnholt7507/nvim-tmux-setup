@@ -3,3 +3,7 @@ vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = 'Telescope find f
 vim.keymap.set('n', '<leader>ps', builtin.live_grep, { desc = 'Telescope live grep' })
 vim.keymap.set('n', '<leader>fs', function() builtin.live_grep({search_dirs={vim.fn.expand("%:p")}}) end, { desc = 'Telescope live grep in current file'})
 vim.keymap.set('n', '<leader>b', builtin.buffers, { desc = 'Telescope buffers' })
+vim.keymap.set('n', '<leader>gc', builtin.git_commits, { desc = 'Telescope git commits' })
+vim.keymap.set('n', '<leader>gs', builtin.git_status, { desc = 'Telescope git status' })
+vim.keymap.set('n', '<leader>gb', builtin.git_branches, { desc = 'Telescope git branches' })
+vim.keymap.set('n', '<leader>t', builtin.treesitter, { desc = 'Telescope treesitter' })
