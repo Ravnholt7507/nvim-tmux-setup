@@ -206,3 +206,6 @@ bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection c
 
 # Keyboard layouts
 exec_always --no-startup-id "setxkbmap -model pc105 -layout us,dk -option grp:alt_space_toggle"
+
+# Lock screen
+bindsym $mod+Escape exec --no-startup-id i3lock, mode "default"
