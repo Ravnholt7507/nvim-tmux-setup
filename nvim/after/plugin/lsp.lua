@@ -1,15 +1,15 @@
 local on_attach = function(_, bufnr)
     local opts = {buffer = bufnr}
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', 'k', vim.lsp.buf.hover, opts)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.declaration, opts)
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
     vim.keymap.set('n', 'go', vim.lsp.buf.type_definition, opts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
     vim.keymap.set('n', 'gs', vim.lsp.buf.signature_help, opts)
-    vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts)
-    vim.keymap.set({'n', 'x'}, '<F3>', function() vim.lsp.buf.format { async = true } end, opts)
-    vim.keymap.set('n', '<F4>', vim.lsp.buf.code_action, opts)
+    vim.keymap.set('n', '<f2>', vim.lsp.buf.rename, opts)
+    vim.keymap.set({'n', 'x'}, '<f3>', function() vim.lsp.buf.format { async = true } end, opts)
+    vim.keymap.set('n', '<f4>', vim.lsp.buf.code_action, opts)
 end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -31,8 +31,8 @@ cmp.setup({
         end,
     },
     mapping = cmp.mapping.preset.insert({
-        ['<CR>'] = cmp.mapping.confirm({select = false}),
-        ['<Tab>'] = cmp.mapping(function(fallback)
+        ['<cr>'] = cmp.mapping.confirm({select = false}),
+        ['<tab>'] = cmp.mapping(function(fallback)
             local col = vim.fn.col('.') - 1
 
             if cmp.visible() then
@@ -44,10 +44,10 @@ cmp.setup({
             end
         end, {'i', 's'}),
 
-        -- Go to previous item
-        ['<S-Tab>'] = cmp.mapping.select_prev_item({behavior = 'select'}),
-        -- Jump to the next snippet placeholder
-        ['<C-f>'] = cmp.mapping(function(fallback)
+        -- go to previous item
+        ['<s-tab>'] = cmp.mapping.select_prev_item({behavior = 'select'}),
+        -- jump to the next snippet placeholder
+        ['<c-f>'] = cmp.mapping(function(fallback)
             local luasnip = require('luasnip')
             if luasnip.locally_jumpable(1) then
                 luasnip.jump(1)
@@ -55,8 +55,8 @@ cmp.setup({
                 fallback()
             end
         end, {'i', 's'}),
-        -- Jump to the previous snippet placeholder
-        ['<C-b>'] = cmp.mapping(function(fallback)
+        -- jump to the previous snippet placeholder
+        ['<c-b>'] = cmp.mapping(function(fallback)
             local luasnip = require('luasnip')
             if luasnip.locally_jumpable(-1) then
                 luasnip.jump(-1)
@@ -92,11 +92,11 @@ vim.lsp.config('pylsp', {
             plugins = {
                 pycodestyle = {
                     enabled = true,
-                    maxLineLength = 200,
+                    maxlinelength = 200,
                 },
                 flake8 = {
                     enabled = true,
-                    maxLineLength = 200,
+                    maxlinelength = 200,
                 },
                 mccabe = { enabled = false },
                 pyflakes = { enabled = false },
@@ -110,12 +110,12 @@ vim.lsp.config('lua_ls', {
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
-        Lua = {
-            runtime = { version = 'LuaJIT' },
+        lua = {
+            runtime = { version = 'luajit' },
             diagnostics = { globals = { 'vim' } },
             workspace = {
                 library = vim.api.nvim_get_runtime_file("", true),
-                checkThirdParty = false,
+                checkthirdparty = false,
             },
             telemetry = { enable = false },
         }
@@ -125,11 +125,11 @@ vim.lsp.config('lua_ls', {
 vim.lsp.config('ansiblels', {
     on_attach = on_attach,
     capabilities = capabilities,
-    filetypes = { "yaml.ansible" }, -- important for triggering only on Ansible YAML files
+    filetypes = { "yaml.ansible" }, -- important for triggering only on ansible yaml files
     settings = {
         ansible = {
             python = {
-                interpreterPath = "python3" -- change this if you use a virtualenv
+                interpreterpath = "python3" -- change this if you use a virtualenv
             },
             ansible = {
                 path = "ansible", -- or your custom ansible binary path
@@ -138,16 +138,11 @@ vim.lsp.config('ansiblels', {
                 enabled = true,
                 lint = {
                     enabled = true,
-                    path = "ansible-lint", -- must be in PATH or virtualenv
+                    path = "ansible-lint", -- must be in path or virtualenv
                 }
             }
         }
     }
-})
-
-vim.lsp.config('clangd', {
-    on_attach = on_attach,
-    capabilities = capabilities
 })
 
 vim.lsp.config('bashls', {
@@ -161,5 +156,8 @@ vim.lsp.config('yamlls', {
 	capabilities = capabilities,
 	filetypes = {'yaml', 'yml'}
 })
+
+local clangd_config = require("clangd")
+vim.lsp.config('clangd', clangd_config)
 
 vim.lsp.enable({'vue_ls', 'ts_ls', 'pylsp', 'lua_ls', 'ansiblels', 'clangd', 'bashls', 'yamlls'})
